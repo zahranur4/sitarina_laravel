@@ -17,6 +17,9 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->boolean('is_admin')->default(false);
+            $table->string('phone')->nullable();
+            $table->text('address')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
@@ -38,7 +41,7 @@ return new class extends Migration
     }
 
     /**
-     * Reverse the migrations.
+     * Menghapus tabel-tabel jika rollback
      */
     public function down(): void
     {
