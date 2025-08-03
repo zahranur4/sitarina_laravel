@@ -40,7 +40,35 @@
               <a href="#visit" class="nav__link">Location</a>
             </li>
             <li class="nav__item">
-              <a href="login dan regis/login.html" class="login-button">Login</a>
+             @guest
+                    <a class="btn btn-dark" href="{{ url('/login') }}">Login</a>
+                @endguest
+
+                @auth
+                    <div class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            {{ Auth::user()->name }}
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                          @if (Auth::user()->is_admin)
+                            <li>
+                              <a class="dropdown-item" href="{{ route('admin.products.index') }}">
+                                <i class="ri-dashboard-line"></i> Dashboard Admin
+                              </a>
+                            </li>
+                            <li><hr class="dropdown-divider"></li>
+                          @endif
+                            <li><a class="dropdown-item" href="{{ url('/profile') }}">Profile</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li>
+                                <form action="{{ url('/logout') }}" method="POST">
+                                    @csrf
+                                    <button type="submit" class="dropdown-item">Logout</button>
+                                </form>
+                            </li>
+                        </ul>
+                    </div>
+                @endauth
             </li>
           </ul>
           <div class="nav__close" id="nav-close">
