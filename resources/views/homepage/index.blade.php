@@ -251,7 +251,7 @@
     <div class="favorite__container container grid">
         @foreach($products as $product)
         <article class="favorite__card">
-            <img src="{{ asset($product->image_path) }}" alt="{{ $product->name }}" class="favorite__img"/>
+            <img src="{{ Storage::url($product->image_path) }}" alt="{{ $product->name }}" class="favorite__img">
             <div class="favorite__data">
                 <h3 class="favorite__title">{{ $product->name }}</h3>
                 <span class="favorite__subtitle">{{ $product->subtitle }}</span>
